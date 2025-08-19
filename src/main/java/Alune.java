@@ -33,7 +33,7 @@ public class Alune {
             String input = scanner.nextLine().trim().toLowerCase();
             int totalTasks = 0;
             
-            if (input.equals("list")) {
+            if (input.equals("list")) { // list
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\nyour tasks: ᕙ( •̀ ᗜ •́ )ᕗ");
                 if (tasks.size() == 0) {
@@ -46,12 +46,12 @@ public class Alune {
                     }
                 }
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
-            } else if (input.equals("bye")) {
+            } else if (input.equals("bye")) { // end program
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\nbye, see you again~ ꉂ(˵˃ ᗜ ˂˵)" +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n");
                 break;
-            } else if (input.startsWith("mark ")) {
+            } else if (input.startsWith("mark ")) { // mark
                 int taskNumber = Integer.parseInt(input.substring(5).trim()) - 1;
                 if (taskNumber > totalTasks) {
                     System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
@@ -64,7 +64,7 @@ public class Alune {
                                         "\n\nmarked as done. nice! (˵ •̀ ᴗ - ˵ )\n" +
                                         tasks.get(taskNumber).toString() +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
-            } else if (input.startsWith("unmark ")) {
+            } else if (input.startsWith("unmark ")) { // unmark
                 int taskNumber = Integer.parseInt(input.substring(7).trim()) - 1;
                 if (taskNumber > totalTasks) {
                     System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
@@ -77,11 +77,36 @@ public class Alune {
                                         "\n\nokay, marked as undone. ( ó﹏ò｡ )\n" +
                                         tasks.get(taskNumber).toString() +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
-            } else {
+            } else if (input.startsWith("todo")) { // todo
                 totalTasks++;
-                tasks.add(new Task(input));
+                String desc = input.substring(5).trim();
+                tasks.add(new ToDoTask(desc));
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                                        "\n\nadded: " + input + " („• ֊ •„)੭" +
+                                        "\n\nadded: " + desc + " („• ֊ •„)੭" +
+                                        "\nyou now have " + totalTasks + " task(s) in the list." +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+            } else if (input.startsWith("deadline")) { // deadline
+                totalTasks++;
+                String desc = Helpers.getDeadlineDescription(input);
+                String deadline = Helpers.getDeadline(input);
+                tasks.add(new DeadlineTask(desc, deadline));
+                System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\nadded: " + desc + " („• ֊ •„)੭" +
+                                        "\nyou now have " + totalTasks + " task(s) in the list." +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+            } else if (input.startsWith("event")) { // event
+                totalTasks++;
+                String desc = Helpers.getEventDescription(input);
+                String start = Helpers.getEventTime(input, true);
+                String end = Helpers.getEventTime(input, false);
+                tasks.add(new EventTask(desc, start, end));
+                System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\nadded: " + desc + " („• ֊ •„)੭" +
+                                        "\nyou now have " + totalTasks + " task(s) in the list." +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+            } else {
+                System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\ncommand not recognised. ( • ᴖ • ｡)" +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
             }
         }
