@@ -26,21 +26,22 @@ public class Alune {
 
         
         Scanner scanner = new Scanner(System.in);
-        List<String> tasks = new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
         
         while (true) {
             System.out.println("\n\nenter: ");
             String input = scanner.nextLine().trim().toLowerCase();
+            int totalTasks = 0;
             
             if (input.equals("list")) {
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\nyour tasks: ᕙ( •̀ ᗜ •́ )ᕗ");
-                int num = 1;
                 if (tasks.size() == 0) {
-                    System.out.println("no tasks recorded~");
+                    System.out.println("no tasks recorded.");
                 } else {
-                    for (String task : tasks) {
-                        System.out.println(num + ". " + task);
+                    int num = 1;
+                    for (Task task : tasks) {
+                        System.out.println(num + ". " + task.toString());
                         num++;
                     }
                 }
@@ -50,8 +51,35 @@ public class Alune {
                                         "\n\nbye, see you again~ ꉂ(˵˃ ᗜ ˂˵)" +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n");
                 break;
+            } else if (input.startsWith("mark ")) {
+                int taskNumber = Integer.parseInt(input.substring(5).trim()) - 1;
+                if (taskNumber > totalTasks) {
+                    System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\ntask does not exist. ∘ ∘ ∘ ( °ヮ° ) ?" +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+                    continue;
+                }
+                tasks.get(taskNumber).markDone();
+                System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\nmarked as done. nice! (˵ •̀ ᴗ - ˵ )\n" +
+                                        tasks.get(taskNumber).toString() +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+            } else if (input.startsWith("unmark ")) {
+                int taskNumber = Integer.parseInt(input.substring(7).trim()) - 1;
+                if (taskNumber > totalTasks) {
+                    System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\ntask does not exist. ∘ ∘ ∘ ( °ヮ° ) ?" +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+                    continue;
+                }
+                tasks.get(taskNumber).markUndone();
+                System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\nokay, marked as undone. ( ó﹏ò｡ )\n" +
+                                        tasks.get(taskNumber).toString() +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
             } else {
-                tasks.add(input);
+                totalTasks++;
+                tasks.add(new Task(input));
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\nadded: " + input + " („• ֊ •„)੭" +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
