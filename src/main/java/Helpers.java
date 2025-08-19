@@ -26,4 +26,25 @@ public class Helpers {
             return input.substring(keyIndex2 + 4).trim();
         }
     }
+
+    public static void taskNotFound() {
+        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                            "\n\ntask does not exist. ∘ ∘ ∘ ( °ヮ° ) ?" +
+                            "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+        return;
+    }
+
+    public static void invalidDescription() {
+        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\nplease include all required task fields. ( ╥﹏╥ )" +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+        return;
+    }
+
+    public static void taskAdded(String desc, int count) {
+        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                        "\n\nadded: " + desc + " („• ֊ •„)੭" +
+                        "\nyou now have " + count + " task(s) in the list." +
+                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    }
 }
