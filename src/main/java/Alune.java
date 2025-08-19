@@ -30,8 +30,13 @@ public class Alune {
         
         while (true) {
             System.out.println("\n\nenter: ");
+            if (!scanner.hasNextLine()) {
+                System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\nno more input. goodbye~ ヾ(＾∇＾)" +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n");
+                break;
+            }
             String input = scanner.nextLine().trim().toLowerCase();
-            int totalTasks = 0;
             
             if (input.equals("list")) { // list
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
@@ -53,7 +58,7 @@ public class Alune {
                 break;
             } else if (input.startsWith("mark ")) { // mark
                 int taskNumber = Integer.parseInt(input.substring(5).trim()) - 1;
-                if (taskNumber > totalTasks) {
+                if (taskNumber > tasks.size()) {
                     System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\ntask does not exist. ∘ ∘ ∘ ( °ヮ° ) ?" +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
@@ -66,7 +71,7 @@ public class Alune {
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
             } else if (input.startsWith("unmark ")) { // unmark
                 int taskNumber = Integer.parseInt(input.substring(7).trim()) - 1;
-                if (taskNumber > totalTasks) {
+                if (taskNumber > tasks.size()) {
                     System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\ntask does not exist. ∘ ∘ ∘ ( °ヮ° ) ?" +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
@@ -78,31 +83,28 @@ public class Alune {
                                         tasks.get(taskNumber).toString() +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
             } else if (input.startsWith("todo")) { // todo
-                totalTasks++;
                 String desc = input.substring(5).trim();
                 tasks.add(new ToDoTask(desc));
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\nadded: " + desc + " („• ֊ •„)੭" +
-                                        "\nyou now have " + totalTasks + " task(s) in the list." +
+                                        "\nyou now have " + tasks.size() + " task(s) in the list." +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
             } else if (input.startsWith("deadline")) { // deadline
-                totalTasks++;
                 String desc = Helpers.getDeadlineDescription(input);
                 String deadline = Helpers.getDeadline(input);
                 tasks.add(new DeadlineTask(desc, deadline));
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\nadded: " + desc + " („• ֊ •„)੭" +
-                                        "\nyou now have " + totalTasks + " task(s) in the list." +
+                                        "\nyou now have " + tasks.size() + " task(s) in the list." +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
             } else if (input.startsWith("event")) { // event
-                totalTasks++;
                 String desc = Helpers.getEventDescription(input);
                 String start = Helpers.getEventTime(input, true);
                 String end = Helpers.getEventTime(input, false);
                 tasks.add(new EventTask(desc, start, end));
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                                         "\n\nadded: " + desc + " („• ֊ •„)੭" +
-                                        "\nyou now have " + totalTasks + " task(s) in the list." +
+                                        "\nyou now have " + tasks.size() + " task(s) in the list." +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
             } else {
                 System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
