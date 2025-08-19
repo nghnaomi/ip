@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Responses {
+public class Interface {
     protected static String logo = "\n   _      _      _      _      _      _   \n"
             + " _( )_  _( )_  _( )_  _( )_  _( )_  _( )_ \n"
             + "(_ o _)(_ o _)(_ o _)(_ o _)(_ o _)(_ o _)\n"
