@@ -1,4 +1,4 @@
-public class Helpers {
+public class Functions {
     public static String getDeadlineDescription(String input) {
         String key = " /";
         int keyIndex = input.indexOf(key, 9);

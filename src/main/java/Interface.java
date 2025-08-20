@@ -71,9 +71,9 @@ public class Interface {
         return;
     }
 
-    public static void invalidDescription() {
+    public static void invalidInput() {
         System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                                        "\n\nplease include all required task fields. ( ╥﹏╥ )" +
+                                        "\n\ninvalid input, please try again. ( ╥﹏╥ )" +
                                         "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
         return;
     }
