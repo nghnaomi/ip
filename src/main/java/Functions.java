@@ -1,3 +1,7 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Functions {
     public static String getDeadlineDescription(String input) {
         String key = " /";
@@ -11,19 +15,26 @@ public class Functions {
         return input.substring(6, keyIndex).trim();
     }
 
-    public static String getDeadline(String input) {
-        int keyIndex1 = input.indexOf(" /by", 9);
-        return input.substring(keyIndex1 + 4).trim();
+    public static String getDeadlineString(String input) {
+        return input.split("/by ")[1];
     }
 
-    public static String getEventTime(String input, boolean start) {
-        String key = " /";
+    public static String getEventString(String input, boolean start) {
         int keyIndex1 = input.indexOf(" /from", 9);
         int keyIndex2 = input.indexOf(" /to", keyIndex1);
         if (start) {
             return input.substring(keyIndex1 + 6, keyIndex2).trim();
         } else {
             return input.substring(keyIndex2 + 4).trim();
+        }
+    }
+
+    public static LocalDateTime getDateTime(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        try {
+            return LocalDateTime.parse(input, formatter);
+        } catch (DateTimeParseException e) {
+            return null;
         }
     }
 }

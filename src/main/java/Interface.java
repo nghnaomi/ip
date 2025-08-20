@@ -78,6 +78,13 @@ public class Interface {
         return;
     }
 
+    public static void invalidDateTime() {
+        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                                        "\n\nplease use dd/mm/yyyy hhmm format. (,,>﹏<,,)" +
+                                        "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+        return;
+    }
+
     public static void taskAdded(String desc, int count) {
         System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                         "\n\nadded: " + desc +

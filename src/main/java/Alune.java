@@ -1,5 +1,7 @@
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
+//import java.util.regex;
 
 public class Alune {
     public static void main(String[] args) {
@@ -17,7 +19,7 @@ public class Alune {
 
             String input = scanner.nextLine().trim().toLowerCase();
             String firstWord = input.split(" ")[0];
-            Command command = Command.fromString(firstWord);
+            Commands command = Commands.fromString(firstWord);
 
             switch (command) {
                 case LIST: {
@@ -80,9 +82,16 @@ public class Alune {
                         Interface.invalidInput();
                         break;
                     }
-
+                    
                     String desc = Functions.getDeadlineDescription(input);
-                    String deadline = Functions.getDeadline(input);
+                    String deadlineStr = Functions.getDeadlineString(input);
+                    LocalDateTime deadline = Functions.getDateTime(deadlineStr);
+                    
+                    if (deadline == null) {
+                        Interface.invalidDateTime();
+                        break;
+                    }
+
                     Task task = new DeadlineTask(desc, deadline);
                     tasks.add(task);
                     Database.updateDatabase();
@@ -99,8 +108,16 @@ public class Alune {
                     }
 
                     String desc = Functions.getEventDescription(input);
-                    String start = Functions.getEventTime(input, true);
-                    String end = Functions.getEventTime(input, false);
+                    String startStr = Functions.getEventString(input, true);
+                    String endStr = Functions.getEventString(input, false);
+                    LocalDateTime start = Functions.getDateTime(startStr);
+                    LocalDateTime end = Functions.getDateTime(endStr);
+
+                    if (start == null || end == null) {
+                        Interface.invalidDateTime();
+                        break;
+                    }
+
                     Task task = new EventTask(desc, start, end);
                     tasks.add(task);
                     Database.updateDatabase();

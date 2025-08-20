@@ -10,12 +10,10 @@ public class Task implements Serializable {
 
     public void markDone() {
         this.done = true;
-        return;
     }
 
     public void markUndone() {
         this.done = false;
-        return;
     }
 
     public String getName() {
