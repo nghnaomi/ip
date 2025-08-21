@@ -2,7 +2,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Functions {
+public class Parser {
+    public static int parseMarkCommand(String input) throws NumberFormatException {
+        return Integer.parseInt(input.substring(5).trim()) - 1;
+    }
+
+    public static int parseUnmarkCommand(String input) throws NumberFormatException {
+        return Integer.parseInt(input.substring(7).trim()) - 1;
+    }
+
     public static String getDeadlineDescription(String input) {
         String key = " /";
         int keyIndex = input.indexOf(key, 9);

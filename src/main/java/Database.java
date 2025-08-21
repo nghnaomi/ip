@@ -8,20 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
-    private final static String DB_PATH = "./data/record.txt";
-    private final static List<Task> database = loadDatabase();
+    private final String path;
 
-    public static void updateDatabase() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DB_PATH))) {
-            oos.writeObject(database);
+    public Database(String filePath) {
+        this.path = filePath;
+    }
+
+    public void update(TaskList tasks) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
+            oos.writeObject(tasks.getTasks());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @SuppressWarnings("unchecked")
-    private static List<Task> loadDatabase() {
-        File file = new File(DB_PATH);
+    public List<Task> load() {
+        File file = new File(path);
         if (!file.exists()) {
             file.getParentFile().mkdirs();
             return new ArrayList<>();
@@ -32,9 +35,5 @@ public class Database {
         } catch (IOException | ClassNotFoundException e) {
             return new ArrayList<>();
         }
-    }
-
-    public static List<Task> getDatabase() {
-        return database;
     }
 }
