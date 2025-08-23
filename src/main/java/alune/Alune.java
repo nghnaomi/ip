@@ -1,5 +1,14 @@
+package alune;
 import java.time.LocalDateTime;
 import java.util.Scanner;
+
+import alune.tasks.DeadlineTask;
+import alune.tasks.EventTask;
+import alune.tasks.Task;
+import alune.tasks.TaskList;
+import alune.tasks.ToDoTask;
+import alune.ui.UI;
+import alune.utils.Parser;
 
 public class Alune {
     private final Database database;

@@ -1,3 +1,4 @@
+package alune;
 public enum Commands {
     LIST, BYE, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN;
 

@@ -1,3 +1,7 @@
+package alune.ui;
+import alune.tasks.Task;
+import alune.tasks.TaskList;
+
 public class UI {
     protected String logo = "\n   _      _      _      _      _      _   \n"
             + " _( )_  _( )_  _( )_  _( )_  _( )_  _( )_ \n"
