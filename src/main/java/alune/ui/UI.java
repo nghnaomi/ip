@@ -3,22 +3,13 @@ import alune.tasks.Task;
 import alune.tasks.TaskList;
 
 public class UI {
-    protected String logo = "\n   _      _      _      _      _      _   \n"
-            + " _( )_  _( )_  _( )_  _( )_  _( )_  _( )_ \n"
-            + "(_ o _)(_ o _)(_ o _)(_ o _)(_ o _)(_ o _)\n"
-            + " (_,_)  (_,_)  (_,_)  (_,_)  (_,_)  (_,_) \n"
-            + "   _                                  _   \n"
-            + " _( )_         _                    _( )_ \n"
-            + "(_ o _)   __ _| |_   _ _ __   ___  (_ o _)\n"
-            + " (_,_)   / _` | | | | | '_ \\ / _ \\  (_,_) \n"
-            + "   _    | (_| | | |_| | | | |  __/    _   \n"
-            + " _( )_   \\__,_|_|\\__,_|_| |_|\\___|  _( )_ \n"
-            + "(_ o _)                            (_ o _)\n"
-            + " (_,_)                              (_,_) \n"
-            + "   _      _      _      _      _      _   \n"
-            + " _( )_  _( )_  _( )_  _( )_  _( )_  _( )_ \n"
-            + "(_ o _)(_ o _)(_ o _)(_ o _)(_ o _)(_ o _)\n"
-            + " (_,_)  (_,_)  (_,_)  (_,_)  (_,_)  (_,_) \n";
+    protected String logo = "\n"
+        + "        __                       \n"
+        + "_____  |  |  __ __  ____   ____  \n"
+        + "\\__  \\ |  | |  |  \\/    \\_/ __ \\ \n"
+        + " / __ \\|  |_|  |  /   |  \\  ___/ \n"
+        + "(____  /____/____/|___|  /\\___  >\n"
+        + "     \\/                \\/     \\/ \n";
 
     public void greet() {
         System.out.println(logo + "\n\nhi i'm alune~ what can i do for you? (⸝⸝ᵕᴗᵕ⸝⸝)" +
@@ -91,6 +82,12 @@ public class UI {
         System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                             "\n\ndeleted: " + task.getName() +
                             "\nyou have " + total + " task(s) now. o(≧∇≦o)" +
+                            "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    }
+
+    public void wipedTasks(int total) {
+        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
+                            "\n\nwiped " + total + " tasks from the list! (￣^￣ )ゞ" +
                             "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
     }
 

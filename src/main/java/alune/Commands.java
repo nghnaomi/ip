@@ -1,6 +1,6 @@
 package alune;
 public enum Commands {
-    LIST, BYE, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN;
+    LIST, BYE, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, WIPE, UNKNOWN;
 
     public static Commands fromString(String input) {
         if (input == null) {
@@ -15,6 +15,7 @@ public enum Commands {
             case "deadline" -> DEADLINE;
             case "event" -> EVENT;
             case "delete" -> DELETE;
+            case "wipe" -> WIPE;
             default -> UNKNOWN;
         };
     }

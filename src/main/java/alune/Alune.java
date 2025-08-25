@@ -158,6 +158,15 @@ public class Alune {
 
                     break;
                 }
+                case WIPE: {
+                    int total = tasks.size();
+                    while (!tasks.isEmpty()) {
+                        tasks.removeTask(0);
+                    }
+                    database.update(tasks);
+                    ui.wipedTasks(total);
+                    break;
+                }
                 case UNKNOWN: {
                     ui.invalidCommand();
                     break;
