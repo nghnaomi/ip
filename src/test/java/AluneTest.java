@@ -11,7 +11,7 @@ import alune.Alune;
 
 public class AluneTest {
     @Test
-    public void test1() {
+    public void aluneTest1() {
         String todoInput = "wipe\ntodo feed plant\ndeadline water cat /by 25/08/2025 1111\nlist\nbye";
         ByteArrayInputStream in = new ByteArrayInputStream(todoInput.getBytes());
         System.setIn(in);
@@ -62,7 +62,7 @@ public class AluneTest {
     }
 
     @Test
-    public void test2() {
+    public void aluneTest2() {
         String todoInput = "wipe\ntodo make breakfast\nevent work /from nine /to 5pm\nevent work /from 25/08/2025 0900 /to 25/08/2025 1700\nlist\nmark 1\nlist\nbye";
         ByteArrayInputStream in = new ByteArrayInputStream(todoInput.getBytes());
         System.setIn(in);
