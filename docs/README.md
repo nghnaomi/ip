@@ -12,7 +12,8 @@ commands:
 ❖ mark (number) | marks the numbered task as done
 ❖ unmark (number) | marks the numbered task as undone
 ❖ delete (number) | deletes the numbered task from the list
-❖ wipe | deletes all tasks from the list
+❖ clear | deletes all tasks from the list
+❖ find | lists tasks that include the name provided
 ❖ bye | closs the program
 
 *must be in dd/mm/yyyy hhmm format where hhmm is 24h time

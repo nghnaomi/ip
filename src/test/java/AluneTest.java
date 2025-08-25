@@ -12,7 +12,7 @@ import alune.Alune;
 public class AluneTest {
     @Test
     public void aluneTest1() {
-        String todoInput = "wipe\ntodo feed plant\ndeadline water cat /by 25/08/2025 1111\nlist\nbye";
+        String todoInput = "clear\ntodo feed plant\ndeadline water cat /by 25/08/2025 1111\nlist\nbye";
         ByteArrayInputStream in = new ByteArrayInputStream(todoInput.getBytes());
         System.setIn(in);
 
@@ -32,7 +32,7 @@ public class AluneTest {
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                 "\n\nenter: " +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nwiped 2 tasks from the list! (￣^￣ )ゞ" +
+                "\n\ncleared 2 tasks from the list! (￣^￣ )ゞ" +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                 "\n\nenter: " +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
@@ -63,7 +63,7 @@ public class AluneTest {
 
     @Test
     public void aluneTest2() {
-        String todoInput = "wipe\ntodo make breakfast\nevent work /from nine /to 5pm\nevent work /from 25/08/2025 0900 /to 25/08/2025 1700\nlist\nmark 1\nlist\nbye";
+        String todoInput = "clear\ntodo make breakfast\nevent work /from nine /to 5pm\nevent work /from 25/08/2025 0900 /to 25/08/2025 1700\nlist\nmark 1\nlist\nbye";
         ByteArrayInputStream in = new ByteArrayInputStream(todoInput.getBytes());
         System.setIn(in);
 
@@ -83,7 +83,7 @@ public class AluneTest {
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                 "\n\nenter: " +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nwiped 2 tasks from the list! (￣^￣ )ゞ" +
+                "\n\ncleared 2 tasks from the list! (￣^￣ )ゞ" +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                 "\n\nenter: " +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
@@ -105,11 +105,11 @@ public class AluneTest {
                 "1. [T][ ] make breakfast\n" +
                 "2. [E][ ] work\n" +
                 "          (from: Aug 25, 2025, 9:00 AM;\n" +
-                "          to: Aug 25, 2025, 5:00 PM)"+
+                "          to: Aug 25, 2025, 5:00 PM)" +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                 "\n\nenter: " +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nmarked as done. nice! (˵ •̀ ᴗ - ˵ )\n" + 
+                "\n\nmarked as done. nice! (˵ •̀ ᴗ - ˵ )\n" +
                 "[T][X] make breakfast" +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                 "\n\nenter: " +
@@ -118,7 +118,7 @@ public class AluneTest {
                 "1. [T][X] make breakfast\n" +
                 "2. [E][ ] work\n" +
                 "          (from: Aug 25, 2025, 9:00 AM;\n" +
-                "          to: Aug 25, 2025, 5:00 PM)"+
+                "          to: Aug 25, 2025, 5:00 PM)" +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
                 "\n\nenter: " +
                 "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
