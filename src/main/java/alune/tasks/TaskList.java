@@ -43,10 +43,6 @@ public class TaskList {
             System.out.println(num + ". " + task);
             num++;
         }
-        System.out.println(num + ". " + task);
-        num++;
-    }
-
     }
 
     public void mark(int index) {
@@ -59,11 +55,6 @@ public class TaskList {
 
     public boolean isEmpty() {
         return list.isEmpty();
-    }
-
-    public TaskList searchList(String key) {
-        List<Task> filtered = this.list.stream().filter(t -> t.getName().contains(key)).toList();
-        return new TaskList(filtered);
     }
 
     public TaskList searchList(String key) {
