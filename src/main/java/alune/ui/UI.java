@@ -2,6 +2,9 @@ package alune.ui;
 import alune.tasks.Task;
 import alune.tasks.TaskList;
 
+/** This class handles the UI of the program's responses to users.
+ *  @author nghnaomi */
+
 public class UI {
     protected String logo = "\n"
         + "        __                       \n"

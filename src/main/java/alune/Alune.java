@@ -10,6 +10,9 @@ import alune.tasks.ToDoTask;
 import alune.ui.UI;
 import alune.utils.Parser;
 
+/** This standard class handles inputs to the main program Alune.
+ *  @author nghnaomi */
+
 public class Alune {
     private final Database database;
     private final TaskList tasks;

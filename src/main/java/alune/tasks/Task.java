@@ -1,6 +1,9 @@
 package alune.tasks;
 import java.io.Serializable;
 
+/** This class is a parent class of the different tasks.
+ *  @author nghnaomi */
+
 public class Task implements Serializable {
     protected boolean done = false;
     protected String name;

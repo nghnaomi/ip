@@ -11,6 +11,9 @@ import java.util.List;
 import alune.tasks.Task;
 import alune.tasks.TaskList;
 
+/** This class stores the task data across program uses.
+ *  @author nghnaomi */
+
 public class Database {
     private final String path;
 

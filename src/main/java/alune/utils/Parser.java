@@ -3,6 +3,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/** This class parses string input to determine the program's actions.
+ *  @author nghnaomi */
+
 public class Parser {
     public static int parseMarkCommand(String input) throws NumberFormatException {
         return Integer.parseInt(input.substring(5).trim()) - 1;
