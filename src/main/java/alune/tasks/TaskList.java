@@ -1,4 +1,5 @@
 package alune.tasks;
+
 import java.util.List;
 
 public class TaskList {
@@ -39,9 +40,9 @@ public class TaskList {
     public void printTasks() {
         int num = 1;
         for (Task task : list) {
-                System.out.println(num + ". " + task);
-                num++;
-            }
+            System.out.println(num + ". " + task);
+            num++;
+        }
     }
 
     public void mark(int index) {
@@ -54,5 +55,10 @@ public class TaskList {
 
     public boolean isEmpty() {
         return list.isEmpty();
+    }
+
+    public TaskList searchList(String key) {
+        List<Task> filtered = this.list.stream().filter(t -> t.getName().contains(key)).toList();
+        return new TaskList(filtered);
     }
 }

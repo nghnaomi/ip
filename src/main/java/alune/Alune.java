@@ -1,4 +1,5 @@
 package alune;
+
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -9,6 +10,12 @@ import alune.tasks.TaskList;
 import alune.tasks.ToDoTask;
 import alune.ui.UI;
 import alune.utils.Parser;
+
+/**
+ * This standard class handles inputs to the main program Alune.
+ * 
+ * @author nghnaomi
+ */
 
 public class Alune {
     private final Database database;
@@ -158,13 +165,22 @@ public class Alune {
 
                     break;
                 }
-                case WIPE: {
+                case CLEAR: {
                     int total = tasks.size();
                     while (!tasks.isEmpty()) {
                         tasks.removeTask(0);
                     }
                     database.update(tasks);
-                    ui.wipedTasks(total);
+                    ui.clearTasks(total);
+                    break;
+                }
+                case FIND: {
+                    String toSearch = Parser.parseFindCommand(input);
+                    if (toSearch.equals("")) {
+                        ui.invalidInput();
+                    } else {
+                        ui.listFilteredTasks(tasks, toSearch);
+                    }
                     break;
                 }
                 case UNKNOWN: {

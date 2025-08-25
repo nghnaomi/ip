@@ -1,7 +1,14 @@
 package alune.utils;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+/**
+ * This class parses string input to determine the program's actions.
+ * 
+ * @author nghnaomi
+ */
 
 public class Parser {
     public static int parseMarkCommand(String input) throws NumberFormatException {
@@ -45,5 +52,9 @@ public class Parser {
         } catch (DateTimeParseException e) {
             return null;
         }
+    }
+
+    public static String parseFindCommand(String input) {
+        return (input.substring(5).trim());
     }
 }
