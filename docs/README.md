@@ -18,10 +18,10 @@ this is a task tracking chatbot.
 \*must be in dd/mm/yyyy hhmm format where hhmm is 24h time
 
 **example uses:**
-todo write report\n
-deadline return book /by 20/08/2025 1200\n
-event birthday party /from 21/08/2025 1700 /to 21/08/2025 2100\n
-mark 1\n
++ todo write report
++ deadline return book /by 20/08/2025 1200
++ event birthday party /from 21/08/2025 1700 /to 21/08/2025 2100
++ mark 1
 
 // A description of the expected outcome goes here
 
