@@ -1,4 +1,4 @@
-# ALUNE USER GUIDE
+# ALUNE
 
 this is a task tracking chatbot.
 
