@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'checkstyle'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 repositories {
@@ -16,7 +17,12 @@ checkstyle {
         'checkstyle.suppressions.file': "config/checkstyle/suppressions.xml"
     ]
 }
-Ç
+
+javafx {
+    version = "21.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics' ]
+}
+
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.10.0'
@@ -24,10 +30,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
-
     testLogging {
         events "passed", "skipped", "failed"
-
         showExceptions true
         exceptionFormat "full"
         showCauses true
@@ -37,14 +41,14 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("alune.Launcher")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "alune"
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
 }

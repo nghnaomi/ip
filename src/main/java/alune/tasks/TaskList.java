@@ -37,12 +37,13 @@ public class TaskList {
         return list.get(index);
     }
 
-    public void printTasks() {
+    public StringBuilder printTasks(StringBuilder sb) {
         int num = 1;
         for (Task task : list) {
-            System.out.println(num + ". " + task);
+            sb.append(num + ". " + task + "\n");
             num++;
         }
+        return sb;
     }
 
     public void mark(int index) {

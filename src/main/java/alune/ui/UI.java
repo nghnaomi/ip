@@ -10,111 +10,68 @@ import alune.tasks.TaskList;
  */
 
 public class UI {
-    protected String logo = "\n"
-            + "        __                       \n"
-            + "_____  |  |  __ __  ____   ____  \n"
-            + "\\__  \\ |  | |  |  \\/    \\_/ __ \\ \n"
-            + " / __ \\|  |_|  |  /   |  \\  ___/ \n"
-            + "(___   /____/____/|___|  /\\___ \\\n"
-            + "     \\/                \\/     \\/ \n";
-
-    public void greet() {
-        System.out.println(logo + "\n\nhi i'm alune~ what can i do for you? (⸝⸝ᵕᴗᵕ⸝⸝)" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String greet() {
+        return "hello there! i'm alune, your personal task manager~ what can i do for you today? (⸝⸝ᵕᴗᵕ⸝⸝)";
     }
 
-    public void farewell() {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nbye, see you again~ ꉂ(˵˃ ᗜ ˂˵)" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n");
+    public String farewell() {
+        return "bye, see you again~ ꉂ(˵˃ ᗜ ˂˵)";
     }
 
-    public void noInput() {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nno more input. goodbye~ ヾ(＾∇＾)" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n");
-    }
-
-    public void listTasks(TaskList tasks) {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nyour tasks: ᕙ( •̀ ᗜ •́ )ᕗ");
+    public String listTasks(TaskList tasks) {
+        StringBuilder sb = new StringBuilder("your tasks: ᕙ( •̀ ᗜ •́ )ᕗ\n");
         if (tasks.isEmpty()) {
-            System.out.println("no tasks recorded.");
+            return sb.append("no tasks recorded.").toString();
         } else {
-            tasks.printTasks();
+            return "\n" + tasks.printTasks(sb).toString();
         }
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
     }
 
-    public void markedDone(Task task) {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nmarked as done. nice! (˵ •̀ ᴗ - ˵ )\n" +
-                task +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String markedDone(Task task) {
+        return "marked as done. nice! (˵ •̀ ᴗ - ˵ )";
     }
 
-    public void markedUndone(Task task) {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nokay, marked as undone. ( ó﹏ò｡ )\n" +
-                task +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String markedUndone(Task task) {
+        return "okay, marked as undone. ( ó﹏ò｡ )";
     }
 
-    public void taskNotFound() {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\ntask does not exist. ∘ ∘ ∘ ( °ヮ° ) ?" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String taskNotFound() {
+        return "task does not exist. ∘ ∘ ∘ ( °ヮ° ) ?";
     }
 
-    public void invalidInput() {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\ninvalid input, please try again. ( ╥﹏╥ )" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String invalidInput() {
+        return "i do not understand, please try again. ( ╥﹏╥ )";
     }
 
-    public void invalidDateTime() {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nplease use dd/mm/yyyy hhmm format. (,,>﹏<,,)" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String invalidDateTime() {
+        return "please use dd/mm/yyyy hhmm format. (,,>﹏<,,)";
     }
 
-    public void taskAdded(String desc, int count) {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\nadded: " + desc +
-                "\nyou have " + count + " task(s) now. („• ֊ •„)੭" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String taskAdded(String desc, int count) {
+        return "added: " + desc +
+                "\nyou have " + count + " task(s) now. („• ֊ •„)";
     }
 
-    public void deletedTask(Task task, int total) {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\ndeleted: " + task.getName() +
-                "\nyou have " + total + " task(s) now. o(≧∇≦o)" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String deletedTask(Task task, int total) {
+        return "deleted: " + task.getName() +
+                "\nyou have " + total + " task(s) now. o(≧∇≦o)";
     }
 
-    public void clearTasks(int total) {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\ncleared " + total + " tasks from the list! (￣^￣ )ゞ" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String clearTasks(int total) {
+        return "cleared a total of " + total + " tasks from the list! (￣^￣ )ゞ";
     }
 
-    public void invalidCommand() {
-        System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                "\n\ncommand not recognised. ( • ᴖ • ｡)" +
-                "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+    public String invalidCommand() {
+        return "command not recognised. ( • ᴖ • ｡)";
     }
 
-    public void listFilteredTasks(TaskList tasks, String key) {
+    public String listFilteredTasks(TaskList tasks, String key) {
         TaskList filtered = tasks.searchList(key);
         if (filtered.isEmpty()) {
-            System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                    "\n\nthere are no matching tasks in your list. （─.─||）" +
-                    "\n\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+            return "there are no matching tasks in your list. (─.─||)";
         } else {
-            System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»\n" +
-                    "\n\nhere are the matching tasks in your list: ٩( ^ᗜ^ )و");
-            filtered.printTasks();
-            System.out.println("\n\n«────────── « ⋅ʚ♡ɞ⋅ » ──────────»");
+            StringBuilder sb = new StringBuilder("here are the matching tasks in your list: ٩( ^ᗜ^ )و");
+            return filtered.printTasks(sb).toString();
         }
 
     }

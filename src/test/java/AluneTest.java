@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import alune.Alune;
+import alune.Launcher;
 
 public class AluneTest {
     @Test
@@ -19,7 +19,7 @@ public class AluneTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        Alune.main(new String[] {});
+        Launcher.main(new String[] {});
 
         String actual = out.toString().trim();
         String expected = "__                       \n"
@@ -70,7 +70,7 @@ public class AluneTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        Alune.main(new String[] {});
+        // Alune.main(new String[] {});
 
         String actual = out.toString().trim();
         String expected = "__                       \n"

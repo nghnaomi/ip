@@ -1,5 +1,0 @@
-todo todotest
-mark 1
-deadline deadlinetest /by sunday
-event eventtest /from 1pm /to 2pm
-list

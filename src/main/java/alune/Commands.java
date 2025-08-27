@@ -1,13 +1,14 @@
 package alune;
 
 public enum Commands {
-    LIST, BYE, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, CLEAR, FIND, UNKNOWN;
+    HI, LIST, BYE, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, CLEAR, FIND, UNKNOWN;
 
     public static Commands fromString(String input) {
         if (input == null) {
             return null;
         }
         return switch (input.toLowerCase()) {
+            case "hi" -> HI;
             case "list" -> LIST;
             case "bye" -> BYE;
             case "mark" -> MARK;
