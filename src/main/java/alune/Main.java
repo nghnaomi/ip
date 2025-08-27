@@ -19,7 +19,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            stage.setTitle("alune ˚ʚ♡ɞ˚");
+            stage.setTitle("ALUNE ˚ʚ♡ɞ˚");
             stage.setMinHeight(650.0);
             stage.setMinWidth(400.0);
             fxmlLoader.<MainWindow>getController().setAlune(alune);

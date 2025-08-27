@@ -45,7 +45,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "alune"
+    archiveBaseName = "Alune"
     archiveClassifier = null
 }
 
