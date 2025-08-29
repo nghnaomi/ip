@@ -23,7 +23,7 @@ public class UI {
         if (tasks.isEmpty()) {
             return sb.append("no tasks recorded.").toString();
         } else {
-            return "\n" + tasks.printTasks(sb);
+            return tasks.printTasks(sb);
         }
     }
 
