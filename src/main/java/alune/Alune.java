@@ -27,6 +27,13 @@ public class Alune {
         tasks = new TaskList(database.load());
     }
 
+    /**
+     * Returns the chatbot's response to the given command, including a default for
+     * unknown commands.
+     * 
+     * @param input User's message to the chatbot.
+     * @return String response to user's command.
+     */
     public String getResponse(String input) {
         String firstWord = input.split(" ")[0];
         Commands command = Commands.fromString(firstWord);

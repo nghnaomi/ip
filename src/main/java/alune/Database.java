@@ -1,4 +1,5 @@
 package alune;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,8 +12,11 @@ import java.util.List;
 import alune.tasks.Task;
 import alune.tasks.TaskList;
 
-/** This class stores the task data across program uses.
- *  @author nghnaomi */
+/**
+ * This class stores the task data across program uses.
+ * 
+ * @author nghnaomi
+ */
 
 public class Database {
     private final String path;
@@ -21,6 +25,11 @@ public class Database {
         this.path = filePath;
     }
 
+    /**
+     * Updates the TaskList in the database for future reference.
+     * 
+     * @param tasks Latest version of the TaskList.
+     */
     public void update(TaskList tasks) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             oos.writeObject(tasks.getTasks());
@@ -29,6 +38,11 @@ public class Database {
         }
     }
 
+    /**
+     * Loads the existing TaskList or creates a new one for future reference.
+     * 
+     * @return Existing or newly created TaskList.
+     */
     @SuppressWarnings("unchecked")
     public List<Task> load() {
         File file = new File(path);

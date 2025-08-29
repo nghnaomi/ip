@@ -11,25 +11,52 @@ public class TaskList {
         this.list = database;
     }
 
+    /**
+     * Adds the given task.
+     * 
+     * @param task Task to add to the list.
+     */
     public void addTask(Task task) {
         list.add(task);
         total++;
     }
 
+    /**
+     * Removes the specified task.
+     * 
+     * @param index Index of task to remove, starting from 0.
+     * @return Removed task.
+     */
     public Task removeTask(int index) {
         Task task = list.remove(index);
         total--;
         return task;
     }
 
+    /**
+     * Returns the list of tasks in the TaskList.
+     * 
+     * @return List as a List<Task>.
+     */
     public List<Task> getTasks() {
         return list;
     }
 
+    /**
+     * Returns the size of the TaskList.
+     * 
+     * @return Size of TaskList.
+     */
     public int size() {
         return total;
     }
 
+    /**
+     * Retrieves and returns a task from the list by index.
+     * 
+     * @param index Index of task to retrieve, starting from 0.
+     * @return Retrieved task.
+     */
     public Task getTask(int index) {
         if (index < 0 || index >= list.size()) {
             return null;
@@ -37,27 +64,55 @@ public class TaskList {
         return list.get(index);
     }
 
-    public StringBuilder printTasks(StringBuilder sb) {
+    /**
+     * Returns list of tasks as a properly formatted string.
+     * 
+     * @param sb StringBuilder of message to add onto.
+     * @return String with added list of tasks.
+     */
+    public String printTasks(StringBuilder sb) {
         int num = 1;
         for (Task task : list) {
             sb.append(num + ". " + task + "\n");
             num++;
         }
-        return sb;
+        return sb.toString();
     }
 
+    /**
+     * Marks a task as done.
+     * 
+     * @param index Index of task to mark as done, starting from 0.
+     */
     public void mark(int index) {
         list.get(index).markDone();
     }
 
+    /**
+     * Unmarks a task as done.
+     * 
+     * @param index Index of task to unmark as done, starting from 0.
+     */
     public void unmark(int index) {
         list.get(index).markUndone();
     }
 
+    /**
+     * Checks if the TaskList is empty.
+     * 
+     * @return True if the TaskList is empty and false if it is not.
+     */
     public boolean isEmpty() {
         return list.isEmpty();
     }
 
+    /**
+     * Filters the TaskList by matching a given key and returns the filtered
+     * TaskList.
+     * 
+     * @param key String to filter the TaskList swith.
+     * @return Filtered TaskList.
+     */
     public TaskList searchList(String key) {
         List<Task> filtered = this.list.stream().filter(t -> t.getName().contains(key)).toList();
         return new TaskList(filtered);

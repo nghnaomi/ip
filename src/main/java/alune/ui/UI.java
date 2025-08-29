@@ -23,7 +23,7 @@ public class UI {
         if (tasks.isEmpty()) {
             return sb.append("no tasks recorded.").toString();
         } else {
-            return "\n" + tasks.printTasks(sb).toString();
+            return "\n" + tasks.printTasks(sb);
         }
     }
 
@@ -71,7 +71,7 @@ public class UI {
             return "there are no matching tasks in your list. (─.─||)";
         } else {
             StringBuilder sb = new StringBuilder("here are the matching tasks in your list: ٩( ^ᗜ^ )و");
-            return filtered.printTasks(sb).toString();
+            return filtered.printTasks(sb);
         }
 
     }
