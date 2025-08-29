@@ -70,7 +70,7 @@ public class UI {
         if (filtered.isEmpty()) {
             return "there are no matching tasks in your list. (─.─||)";
         } else {
-            StringBuilder sb = new StringBuilder("here are the matching tasks in your list: ٩( ^ᗜ^ )و");
+            StringBuilder sb = new StringBuilder("here are the matching tasks in your list: ٩( ^ᗜ^ )و\n");
             return filtered.printTasks(sb);
         }
 
