@@ -39,7 +39,7 @@ public class Database {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             this.prev = tasks.getTasks().stream()
                     .map(Task::cloneTask)
-                    .collect(Collectors.toCollection(ArrayList::new));
+                    .collect(Collectors.toList());
             this.hasPreviousState = true;
             oos.writeObject(tasks.getTasks());
         } catch (Exception e) {
