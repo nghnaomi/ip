@@ -2,6 +2,7 @@ package alune.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private int total;
@@ -122,7 +123,7 @@ public class TaskList {
      */
     public TaskList searchList(String key) {
         List<Task> filtered = this.list.stream().filter(t -> t.getName().contains(key))
-                .collect(java.util.stream.Collectors.toList());
+                .collect(Collectors.toList());
         return new TaskList(filtered);
     }
 }
