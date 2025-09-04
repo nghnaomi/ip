@@ -1,5 +1,10 @@
 package alune.tasks;
 
+/**
+ * This class inherits from Task for basic tasks.
+ * 
+ * @author nghnaomi
+ */
 public class ToDoTask extends Task {
     public ToDoTask(String name) {
         super(name);

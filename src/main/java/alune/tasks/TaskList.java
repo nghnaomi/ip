@@ -7,6 +7,12 @@ public class TaskList {
     private int total;
     private final List<Task> list;
 
+    /**
+     * This class contains a list of tasks with functions such as adding, removing
+     * and filtering tasks.
+     * 
+     * @author nghnaomi
+     */
     public TaskList(List<Task> database) {
         this.total = database.size();
         this.list = new ArrayList<>(database);

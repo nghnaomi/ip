@@ -11,7 +11,7 @@ import alune.ui.UI;
 import alune.utils.Parser;
 
 /**
- * This standard class handles inputs to the main program Alune.
+ * This standard class handles the chatbot's responses to the user's inputs.
  * 
  * @author nghnaomi
  */
