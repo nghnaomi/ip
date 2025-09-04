@@ -1,34 +1,47 @@
 package alune.tasks;
+
 import java.io.Serializable;
 
-/** This class is a parent class of the different tasks.
- *  @author nghnaomi */
+/**
+ * This class is a parent class of the different tasks.
+ * 
+ * @author nghnaomi
+ */
 
 public class Task implements Serializable {
-    protected boolean done = false;
+    protected boolean isDone = false;
     protected String name;
 
     public Task(String name) {
         this.name = name;
     }
 
+    public Task(Task other) {
+        this.name = other.name;
+        this.isDone = other.isDone;
+    }
+
     public void markDone() {
-        this.done = true;
+        this.isDone = true;
     }
 
     public void markUndone() {
-        this.done = false;
+        this.isDone = false;
     }
 
     public String getName() {
         return this.name;
     }
 
+    public Task cloneTask() {
+        return new Task(this);
+    }
+
     @Override
     public String toString() {
-        return this.done
-            ? "[X] " + this.name
-            : "[ ] " + this.name;
+        return this.isDone
+                ? "[X] " + this.name
+                : "[ ] " + this.name;
     }
 
 }

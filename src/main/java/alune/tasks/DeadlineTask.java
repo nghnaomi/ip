@@ -1,4 +1,5 @@
 package alune.tasks;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -12,9 +13,20 @@ public class DeadlineTask extends Task {
         this.deadline = deadline;
     }
 
+    public DeadlineTask(Task other) {
+        super(other);
+    }
+
+    @Override
+    public Task cloneTask() {
+        return new DeadlineTask(this);
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + "\n          (by: " +
-        deadline.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT).withLocale(Locale.US)) + ")";
+                deadline.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT)
+                        .withLocale(Locale.US))
+                + ")";
     }
 }

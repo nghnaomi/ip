@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import alune.tasks.Task;
 import alune.tasks.TaskList;
@@ -20,22 +21,47 @@ import alune.tasks.TaskList;
 
 public class Database {
     private final String path;
+    private List<Task> prev;
+    private boolean hasPreviousState;
 
     public Database(String filePath) {
         this.path = filePath;
+        this.prev = new ArrayList<>();
+        this.hasPreviousState = false;
     }
 
     /**
-     * Updates the TaskList in the database for future reference.
+     * Updates the TaskList in the database for future reference and saves a copy
+     * for undo command.
      * 
      * @param tasks Latest version of the TaskList.
      */
     public void update(TaskList tasks) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
+            this.prev = tasks.getTasks().stream()
+                    .map(Task::cloneTask)
+                    .collect(Collectors.toCollection(ArrayList::new));
+            this.hasPreviousState = true;
+
+            System.out.println("Original tasks (object references):");
+            tasks.getTasks().forEach(task -> System.out.println(System.identityHashCode(task) + ": " + task));
+
+            System.out.println("Cloned tasks (object references):");
+            this.prev.forEach(task -> System.out.println(System.identityHashCode(task) + ": " + task));
+
             oos.writeObject(tasks.getTasks());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // ADD JAVADOC COMMENT
+    public TaskList getPreviousState() {
+        if (!hasPreviousState) {
+            return null;
+        }
+        hasPreviousState = false;
+        return new TaskList(new ArrayList<>(this.prev));
     }
 
     /**

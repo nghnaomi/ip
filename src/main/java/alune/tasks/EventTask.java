@@ -1,4 +1,5 @@
 package alune.tasks;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -14,12 +15,24 @@ public class EventTask extends Task {
         this.end = end;
     }
 
+    public EventTask(Task other) {
+        super(other);
+    }
+
+    @Override
+    public Task cloneTask() {
+        return new EventTask(this);
+    }
+
     @Override
     public String toString() {
-        return "[E]" + super.toString() +
-        "\n          (from: " +
-        start.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT).withLocale(Locale.US)) +
-        ";\n          to: " +
-        end.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT).withLocale(Locale.US)) + ")";
+        return "[E]" + super.toString() + "\n          (from: " +
+                start.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT)
+                        .withLocale(Locale.US))
+                +
+                ";\n          to: " +
+                end.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT)
+                        .withLocale(Locale.US))
+                + ")";
     }
 }

@@ -1,5 +1,6 @@
 package alune.tasks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
@@ -8,7 +9,7 @@ public class TaskList {
 
     public TaskList(List<Task> database) {
         this.total = database.size();
-        this.list = database;
+        this.list = new ArrayList<>(database);
     }
 
     /**
@@ -114,7 +115,8 @@ public class TaskList {
      * @return Filtered TaskList.
      */
     public TaskList searchList(String key) {
-        List<Task> filtered = this.list.stream().filter(t -> t.getName().contains(key)).toList();
+        List<Task> filtered = this.list.stream().filter(t -> t.getName().contains(key))
+                .collect(java.util.stream.Collectors.toList());
         return new TaskList(filtered);
     }
 }

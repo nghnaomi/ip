@@ -15,12 +15,16 @@ import alune.utils.Parser;
  * 
  * @author nghnaomi
  */
-
 public class Alune {
     private final Database database;
-    private final TaskList tasks;
     private final UI ui;
+    private TaskList tasks;
 
+    /**
+     * Constructor for Alune class object.
+     * 
+     * @param filePath Path to load database file from.
+     */
     public Alune(String filePath) {
         ui = new UI();
         database = new Database(filePath);
@@ -39,20 +43,20 @@ public class Alune {
         Commands command = Commands.fromString(firstWord);
 
         switch (command) {
-            case HI: {
+            case HI -> {
                 return ui.greet();
             }
-            case LIST: {
+            case LIST -> {
                 return ui.listTasks(tasks);
             }
-            case BYE: {
+            case BYE -> {
                 return ui.farewell();
             }
-            case MARK: {
+            case MARK -> {
                 try {
                     int index = Parser.parseMarkCommand(input);
-                    tasks.mark(index);
                     database.update(tasks);
+                    tasks.mark(index);
                     return ui.markedDone(tasks.getTask(index));
                 } catch (NumberFormatException e) {
                     return ui.invalidInput();
@@ -60,11 +64,11 @@ public class Alune {
                     return ui.taskNotFound();
                 }
             }
-            case UNMARK: {
+            case UNMARK -> {
                 try {
                     int index = Parser.parseUnmarkCommand(input);
-                    tasks.unmark(index);
                     database.update(tasks);
+                    tasks.unmark(index);
                     return ui.markedUndone(tasks.getTask(index));
                 } catch (NumberFormatException e) {
                     return ui.invalidInput();
@@ -72,18 +76,18 @@ public class Alune {
                     return ui.taskNotFound();
                 }
             }
-            case TODO: {
+            case TODO -> {
                 if (input.length() <= 5) {
                     return (ui.invalidInput());
                 }
 
                 String desc = input.substring(5).trim();
                 Task task = new ToDoTask(desc);
-                tasks.addTask(task);
                 database.update(tasks);
-                return ui.taskAdded(task.getName(), tasks.size());
+                tasks.addTask(task);
+                return ui.addedTask(task.getName(), tasks.size());
             }
-            case DEADLINE: {
+            case DEADLINE -> {
                 int byIndex = input.indexOf(" /by");
                 if (byIndex == -1 || byIndex <= 9 || input.length() <= byIndex + 4) {
                     return ui.invalidInput();
@@ -98,11 +102,11 @@ public class Alune {
                 }
 
                 Task task = new DeadlineTask(desc, deadline);
-                tasks.addTask(task);
                 database.update(tasks);
-                return ui.taskAdded(task.getName(), tasks.size());
+                tasks.addTask(task);
+                return ui.addedTask(task.getName(), tasks.size());
             }
-            case EVENT: {
+            case EVENT -> {
                 int fromIndex = input.indexOf(" /from");
                 int toIndex = input.indexOf(" /to", fromIndex + 1);
                 if (fromIndex == -1 || toIndex == -1 || fromIndex <= 5 ||
@@ -121,33 +125,33 @@ public class Alune {
                 }
 
                 Task task = new EventTask(desc, start, end);
-                tasks.addTask(task);
                 database.update(tasks);
-                return ui.taskAdded(task.getName(), tasks.size());
+                tasks.addTask(task);
+                return ui.addedTask(task.getName(), tasks.size());
             }
-            case DELETE: {
+            case DELETE -> {
                 try {
                     int taskNumber = Integer.parseInt(input.substring(7).trim()) - 1;
                     if (taskNumber < 0 || taskNumber >= tasks.size()) {
                         return ui.taskNotFound();
                     }
 
-                    Task task = tasks.removeTask(taskNumber);
                     database.update(tasks);
+                    Task task = tasks.removeTask(taskNumber);
                     return ui.deletedTask(task, tasks.size());
                 } catch (NumberFormatException e) {
                     return ui.invalidInput();
                 }
             }
-            case CLEAR: {
+            case CLEAR -> {
                 int total = tasks.size();
+                database.update(tasks);
                 while (!tasks.isEmpty()) {
                     tasks.removeTask(0);
                 }
-                database.update(tasks);
-                return ui.clearTasks(total);
+                return ui.clearedTasks(total);
             }
-            case FIND: {
+            case FIND -> {
                 String toSearch = Parser.parseFindCommand(input);
                 if (toSearch.equals("")) {
                     return ui.invalidInput();
@@ -155,7 +159,16 @@ public class Alune {
                     return ui.listFilteredTasks(tasks, toSearch);
                 }
             }
-            case UNKNOWN: {
+            case UNDO -> {
+                TaskList previousState = database.getPreviousState();
+                if (previousState == null) {
+                    return ui.failedUndoCommand();
+                }
+                this.tasks = previousState;
+                database.update(tasks);
+                return ui.undidCommand();
+            }
+            case UNKNOWN -> {
                 return ui.invalidCommand();
             }
         }

@@ -47,7 +47,7 @@ public class UI {
         return "please use dd/mm/yyyy hhmm format. (,,>﹏<,,)";
     }
 
-    public String taskAdded(String desc, int count) {
+    public String addedTask(String desc, int count) {
         return "added: " + desc +
                 "\nyou have " + count + " task(s) now. („• ֊ •„)";
     }
@@ -57,7 +57,7 @@ public class UI {
                 "\nyou have " + total + " task(s) now. o(≧∇≦o)";
     }
 
-    public String clearTasks(int total) {
+    public String clearedTasks(int total) {
         return "cleared a total of " + total + " tasks from the list! (￣^￣ )ゞ";
     }
 
@@ -73,6 +73,13 @@ public class UI {
             StringBuilder sb = new StringBuilder("here are the matching tasks in your list: ٩( ^ᗜ^ )و\n");
             return filtered.printTasks(sb);
         }
+    }
 
+    public String undidCommand() {
+        return "the most recent change has been undone! (´｡• ω •｡`)";
+    }
+
+    public String failedUndoCommand() {
+        return "there is no recent change to undo. ( • ᴖ • ｡)";
     }
 }
