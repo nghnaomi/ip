@@ -54,10 +54,10 @@ public class Database {
      * @return TaskList before latest change.
      */
     public TaskList getPreviousState() {
-        if (!hasPreviousState) {
+        if (!this.hasPreviousState) {
             return null;
         }
-        hasPreviousState = false;
+        this.hasPreviousState = false;
         return new TaskList(new ArrayList<>(this.prev));
     }
 
