@@ -39,6 +39,10 @@ public class Alune {
      * @return String response to user's command.
      */
     public String getResponse(String input) {
+        assert ui != null : "important: UI not found";
+        assert database != null : "important: database not found";
+        assert tasks != null : "important: tasklist not found";
+
         String firstWord = input.split(" ")[0];
         Commands command = Commands.fromString(firstWord);
 
