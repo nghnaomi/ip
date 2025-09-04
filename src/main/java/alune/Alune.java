@@ -169,7 +169,6 @@ public class Alune {
                     return ui.failedUndoCommand();
                 }
                 this.tasks = previousState;
-                database.update(tasks);
                 return ui.undidCommand();
             }
             case UNKNOWN -> {
