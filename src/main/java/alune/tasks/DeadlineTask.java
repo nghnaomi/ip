@@ -5,6 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
+/**
+ * This class inherits from Task for tasks with deadlines.
+ * 
+ * @author nghnaomi
+ */
 public class DeadlineTask extends Task {
     protected LocalDateTime deadline;
 

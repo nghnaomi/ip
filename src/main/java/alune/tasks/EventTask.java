@@ -9,6 +9,11 @@ public class EventTask extends Task {
     protected LocalDateTime start;
     protected LocalDateTime end;
 
+    /**
+     * This class inherits from Task for tasks with start and end times.
+     * 
+     * @author nghnaomi
+     */
     public EventTask(String name, LocalDateTime start, LocalDateTime end) {
         super(name);
         this.start = start;
