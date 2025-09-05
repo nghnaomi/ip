@@ -80,6 +80,6 @@ public class UI {
     }
 
     public String failedUndoCommand() {
-        return "there is no recent change to undo. ( • ᴖ • ｡)";
+        return "there is nothing to undo. ( • ᴖ • ｡)";
     }
 }

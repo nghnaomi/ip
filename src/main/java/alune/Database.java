@@ -18,7 +18,6 @@ import alune.tasks.TaskList;
  * 
  * @author nghnaomi
  */
-
 public class Database {
     private final String path;
     private List<Task> prev;
@@ -40,27 +39,25 @@ public class Database {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             this.prev = tasks.getTasks().stream()
                     .map(Task::cloneTask)
-                    .collect(Collectors.toCollection(ArrayList::new));
+                    .collect(Collectors.toList());
             this.hasPreviousState = true;
-
-            System.out.println("Original tasks (object references):");
-            tasks.getTasks().forEach(task -> System.out.println(System.identityHashCode(task) + ": " + task));
-
-            System.out.println("Cloned tasks (object references):");
-            this.prev.forEach(task -> System.out.println(System.identityHashCode(task) + ": " + task));
-
             oos.writeObject(tasks.getTasks());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // ADD JAVADOC COMMENT
+    /**
+     * Returns previous state of the TaskList to undo most recent change, then
+     * sets getPreviousState to false as only one change can be undone.
+     * 
+     * @return TaskList before latest change.
+     */
     public TaskList getPreviousState() {
-        if (!hasPreviousState) {
+        if (!this.hasPreviousState) {
             return null;
         }
-        hasPreviousState = false;
+        this.hasPreviousState = false;
         return new TaskList(new ArrayList<>(this.prev));
     }
 

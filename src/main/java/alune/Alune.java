@@ -11,7 +11,7 @@ import alune.ui.UI;
 import alune.utils.Parser;
 
 /**
- * This standard class handles inputs to the main program Alune.
+ * This standard class handles the chatbot's responses to the user's inputs.
  * 
  * @author nghnaomi
  */
@@ -46,6 +46,10 @@ public class Alune {
      * @return String response to user's command.
      */
     public String getResponse(String input) {
+        assert ui != null : "important: UI not found";
+        assert database != null : "important: database not found";
+        assert tasks != null : "important: tasklist not found";
+
         String firstWord = input.split(" ")[0];
         Commands command = Commands.fromString(firstWord);
 
@@ -173,7 +177,6 @@ public class Alune {
                     return ui.failedUndoCommand();
                 }
                 this.tasks = previousState;
-                database.update(tasks);
                 return ui.undidCommand();
             }
             case UNKNOWN -> {

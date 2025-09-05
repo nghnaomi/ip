@@ -2,11 +2,18 @@ package alune.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private int total;
     private final List<Task> list;
 
+    /**
+     * This class contains a list of tasks with functions such as adding, removing
+     * and filtering tasks.
+     * 
+     * @author nghnaomi
+     */
     public TaskList(List<Task> database) {
         this.total = database.size();
         this.list = new ArrayList<>(database);
@@ -116,7 +123,7 @@ public class TaskList {
      */
     public TaskList searchList(String key) {
         List<Task> filtered = this.list.stream().filter(t -> t.getName().contains(key))
-                .collect(java.util.stream.Collectors.toList());
+                .collect(Collectors.toList());
         return new TaskList(filtered);
     }
 }
