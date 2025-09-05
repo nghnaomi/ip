@@ -24,6 +24,10 @@ public class Main extends Application {
             stage.setMinWidth(400.0);
             fxmlLoader.<MainWindow>getController().setAlune(alune);
             stage.show();
+
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                alune.shutdown();
+            }));
         } catch (IOException e) {
             e.printStackTrace();
         }

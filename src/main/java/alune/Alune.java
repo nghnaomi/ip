@@ -32,6 +32,13 @@ public class Alune {
     }
 
     /**
+     * Saves data before program closes.
+     */
+    public void shutdown() {
+        database.update(tasks);
+    }
+
+    /**
      * Returns the chatbot's response to the given command, including a default for
      * unknown commands.
      * 
@@ -50,6 +57,7 @@ public class Alune {
                 return ui.listTasks(tasks);
             }
             case BYE -> {
+                database.update(tasks);
                 return ui.farewell();
             }
             case MARK -> {
