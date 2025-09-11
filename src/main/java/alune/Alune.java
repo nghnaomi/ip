@@ -179,6 +179,11 @@ public class Alune {
                 this.tasks = previousState;
                 return ui.undidCommand();
             }
+            case UPDATE -> {
+                database.update(tasks);
+                int removed = tasks.removeDoneTasks();
+                return ui.wipedDoneTasks(removed, tasks.size());
+            }
             case UNKNOWN -> {
                 return ui.invalidCommand();
             }

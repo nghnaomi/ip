@@ -14,6 +14,8 @@ this is a task tracking chatbot.
 + delete (number) | deletes the numbered task from the list
 + clear | deletes all tasks from the list
 + find | lists tasks that include the name provided
++ undo | reverses the most recent change
++ update | clears all done tasks from the lsit
 + bye | closs the program
 \*must be in dd/mm/yyyy hhmm format where hhmm is 24h time
 

@@ -8,8 +8,8 @@ import java.io.Serializable;
  * @author nghnaomi
  */
 public class Task implements Serializable {
-    protected boolean isDone = false;
-    protected String name;
+    private boolean isDone = false;
+    private String name;
 
     public Task(String name) {
         this.name = name;
@@ -30,6 +30,10 @@ public class Task implements Serializable {
 
     public String getName() {
         return this.name;
+    }
+
+    public boolean getStatus() {
+        return this.isDone;
     }
 
     public Task cloneTask() {

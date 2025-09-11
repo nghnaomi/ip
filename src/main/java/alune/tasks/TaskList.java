@@ -126,4 +126,21 @@ public class TaskList {
                 .collect(Collectors.toList());
         return new TaskList(filtered);
     }
+
+    /**
+     * Removes all tasks that are marked as done from the TaskList.
+     * 
+     * @return Number of tasks removed.
+     */
+    public int removeDoneTasks() {
+        int removedCount = 0;
+        for (int i = list.size() - 1; i >= 0; i--) {
+            if (list.get(i).getStatus()) {
+                list.remove(i);
+                total--;
+                removedCount++;
+            }
+        }
+        return removedCount;
+    }
 }

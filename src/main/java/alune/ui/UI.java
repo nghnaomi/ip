@@ -82,4 +82,9 @@ public class UI {
     public String failedUndoCommand() {
         return "there is nothing to undo. ( • ᴖ • ｡)";
     }
+
+    public String wipedDoneTasks(int removedCount, int remaining) {
+        return "removed " + removedCount + " completed task(s)! "
+                + remaining + " task(s) remaining. (ᴗ_ ᴗ。)";
+    }
 }
