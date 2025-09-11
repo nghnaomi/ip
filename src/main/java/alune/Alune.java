@@ -179,7 +179,7 @@ public class Alune {
                 this.tasks = previousState;
                 return ui.undidCommand();
             }
-            case UPDATE -> {
+            case UPDATE -> { // This command was generated with ChatGPT for the A-AIAssisted increment.
                 database.update(tasks);
                 int removed = tasks.removeDoneTasks();
                 return ui.wipedDoneTasks(removed, tasks.size());

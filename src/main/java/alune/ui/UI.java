@@ -84,7 +84,6 @@ public class UI {
     }
 
     public String wipedDoneTasks(int removedCount, int remaining) {
-        return "removed " + removedCount + " completed task(s)! "
-                + remaining + " task(s) remaining. (ᴗ_ ᴗ。)";
+        return "removed " + removedCount + " completed task(s)! " + remaining + " task(s) remaining. (ᴗ_ ᴗ。)";
     }
 }

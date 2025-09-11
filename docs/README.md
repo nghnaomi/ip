@@ -1,6 +1,6 @@
 # ALUNE
 
-this is a task tracking chatbot.
+your personal task manager chatbot~
 
 ## available commands
 
@@ -16,7 +16,7 @@ this is a task tracking chatbot.
 + find | lists tasks that include the name provided
 + undo | reverses the most recent change
 + update | clears all done tasks from the lsit
-+ bye | closs the program
++ bye | closes the program
 \*must be in dd/mm/yyyy hhmm format where hhmm is 24h time
 
 **example uses:**
@@ -24,18 +24,4 @@ this is a task tracking chatbot.
 + deadline return book /by 20/08/2025 1200
 + event birthday party /from 21/08/2025 1700 /to 21/08/2025 2100
 + mark 1
-
-// A description of the expected outcome goes here
-
-```
-expected output
-```
-
-## Feature ABC
-
-// Feature details
-
-
-## Feature XYZ
-
-// Feature details
++ find math
