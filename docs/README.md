@@ -7,8 +7,8 @@ your personal task manager chatbot~
 **commands:**
 + list | lists the current tasks
 + todo (task name) | adds a todo task to the list
-+ deadline (task name) /by (deadline*) | adds a deadline task to the list
-+ event (task name) /from (start\*) /to (end*) | adds an event task to the list
++ deadline (task name) /by (deadline^) | adds a deadline task to the list
++ event (task name) /from (start^) /to (end^) | adds an event task to the list
 + mark (number) | marks the numbered task as done
 + unmark (number) | marks the numbered task as undone
 + delete (number) | deletes the numbered task from the list
@@ -17,7 +17,7 @@ your personal task manager chatbot~
 + undo | reverses the most recent change
 + update | clears all done tasks from the lsit
 + bye | closes the program
-\*must be in dd/mm/yyyy hhmm format where hhmm is 24h time
+^must be in dd/mm/yyyy hhmm format where hhmm is 24h time
 
 **example uses:**
 + todo write report
