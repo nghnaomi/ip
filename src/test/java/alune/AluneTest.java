@@ -70,8 +70,6 @@ public class AluneTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        // Alune.main(new String[] {});
-
         String actual = out.toString().trim();
         String expected = "__                       \n"
                 + "_____  |  |  __ __  ____   ____  \n"

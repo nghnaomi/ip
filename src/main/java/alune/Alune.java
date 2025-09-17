@@ -53,142 +53,158 @@ public class Alune {
         String firstWord = input.split(" ")[0];
         Commands command = Commands.fromString(firstWord);
 
-        switch (command) {
-            case HI -> {
-                return ui.greet();
-            }
-            case LIST -> {
-                return ui.listTasks(tasks);
-            }
-            case BYE -> {
-                database.update(tasks);
-                return ui.farewell();
-            }
-            case MARK -> {
-                try {
-                    int index = Parser.parseMarkCommand(input);
-                    database.update(tasks);
-                    tasks.mark(index);
-                    return ui.markedDone(tasks.getTask(index));
-                } catch (NumberFormatException e) {
-                    return ui.invalidInput();
-                } catch (IndexOutOfBoundsException e) {
-                    return ui.taskNotFound();
-                }
-            }
-            case UNMARK -> {
-                try {
-                    int index = Parser.parseUnmarkCommand(input);
-                    database.update(tasks);
-                    tasks.unmark(index);
-                    return ui.markedUndone(tasks.getTask(index));
-                } catch (NumberFormatException e) {
-                    return ui.invalidInput();
-                } catch (IndexOutOfBoundsException e) {
-                    return ui.taskNotFound();
-                }
-            }
-            case TODO -> {
-                if (input.length() <= 5) {
-                    return (ui.invalidInput());
-                }
+        return switch (command) {
+            case HI -> ui.greet();
+            case LIST -> ui.listTasks(tasks);
+            case BYE -> handleBye();
+            case MARK -> handleMark(input);
+            case UNMARK -> handleUnmark(input);
+            case TODO -> handleToDo(input);
+            case DEADLINE -> handleDeadline(input);
+            case EVENT -> handleEvent(input);
+            case DELETE -> handleDelete(input);
+            case CLEAR -> handleClear();
+            case FIND -> handleFind(input);
+            case UNDO -> handleUndo();
+            case UPDATE -> handleUpdate();
+            case UNKNOWN -> ui.invalidCommand();
+        };
+    }
 
-                String desc = input.substring(5).trim();
-                Task task = new ToDoTask(desc);
-                database.update(tasks);
-                tasks.addTask(task);
-                return ui.addedTask(task.getName(), tasks.size());
-            }
-            case DEADLINE -> {
-                int byIndex = input.indexOf(" /by");
-                if (byIndex == -1 || byIndex <= 9 || input.length() <= byIndex + 4) {
-                    return ui.invalidInput();
-                }
+    private String handleBye() {
+        database.update(tasks);
+        return ui.farewell();
+    }
 
-                String desc = Parser.getDeadlineDescription(input);
-                String deadlineStr = Parser.getDeadlineString(input);
-                LocalDateTime deadline = Parser.getDateTime(deadlineStr);
+    private String handleMark(String input) {
+        try {
+            int index = Parser.parseMarkCommand(input);
+            database.update(tasks);
+            tasks.mark(index);
+            return ui.markedDone(tasks.getTask(index));
+        } catch (NumberFormatException e) {
+            return ui.invalidInput();
+        } catch (IndexOutOfBoundsException e) {
+            return ui.taskNotFound();
+        }
+    }
 
-                if (deadline == null) {
-                    return ui.invalidDateTime();
-                }
+    private String handleUnmark(String input) {
+        try {
+            int index = Parser.parseUnmarkCommand(input);
+            database.update(tasks);
+            tasks.unmark(index);
+            return ui.markedUndone(tasks.getTask(index));
+        } catch (NumberFormatException e) {
+            return ui.invalidInput();
+        } catch (IndexOutOfBoundsException e) {
+            return ui.taskNotFound();
+        }
+    }
 
-                Task task = new DeadlineTask(desc, deadline);
-                database.update(tasks);
-                tasks.addTask(task);
-                return ui.addedTask(task.getName(), tasks.size());
-            }
-            case EVENT -> {
-                int fromIndex = input.indexOf(" /from");
-                int toIndex = input.indexOf(" /to", fromIndex + 1);
-                if (fromIndex == -1 || toIndex == -1 || fromIndex <= 5 ||
-                        toIndex - (fromIndex + 6) <= 0 || input.length() <= toIndex + 4) {
-                    return ui.invalidInput();
-                }
-
-                String desc = Parser.getEventDescription(input);
-                String startStr = Parser.getEventString(input, true);
-                String endStr = Parser.getEventString(input, false);
-                LocalDateTime start = Parser.getDateTime(startStr);
-                LocalDateTime end = Parser.getDateTime(endStr);
-
-                if (start == null || end == null) {
-                    return ui.invalidDateTime();
-                }
-
-                Task task = new EventTask(desc, start, end);
-                database.update(tasks);
-                tasks.addTask(task);
-                return ui.addedTask(task.getName(), tasks.size());
-            }
-            case DELETE -> {
-                try {
-                    int taskNumber = Integer.parseInt(input.substring(7).trim()) - 1;
-                    if (taskNumber < 0 || taskNumber >= tasks.size()) {
-                        return ui.taskNotFound();
-                    }
-
-                    database.update(tasks);
-                    Task task = tasks.removeTask(taskNumber);
-                    return ui.deletedTask(task, tasks.size());
-                } catch (NumberFormatException e) {
-                    return ui.invalidInput();
-                }
-            }
-            case CLEAR -> {
-                int total = tasks.size();
-                database.update(tasks);
-                while (!tasks.isEmpty()) {
-                    tasks.removeTask(0);
-                }
-                return ui.clearedTasks(total);
-            }
-            case FIND -> {
-                String toSearch = Parser.parseFindCommand(input);
-                if (toSearch.equals("")) {
-                    return ui.invalidInput();
-                } else {
-                    return ui.listFilteredTasks(tasks, toSearch);
-                }
-            }
-            case UNDO -> {
-                TaskList previousState = database.getPreviousState();
-                if (previousState == null) {
-                    return ui.failedUndoCommand();
-                }
-                this.tasks = previousState;
-                return ui.undidCommand();
-            }
-            case UPDATE -> { // This command was generated with ChatGPT for the A-AIAssisted increment.
-                database.update(tasks);
-                int removed = tasks.removeDoneTasks();
-                return ui.wipedDoneTasks(removed, tasks.size());
-            }
-            case UNKNOWN -> {
-                return ui.invalidCommand();
-            }
+    private String handleToDo(String input) {
+        if (input.length() <= 5) {
+            return ui.invalidInput();
         }
 
-        return "";
+        database.update(tasks);
+
+        String desc = input.substring(5).trim();
+        Task task = new ToDoTask(desc);
+        tasks.addTask(task);
+        return ui.addedTask(task.getName(), tasks.size());
     }
+
+    private String handleDeadline(String input) {
+        int byIndex = input.indexOf(" /by");
+        if (byIndex == -1 || byIndex <= 9 || input.length() <= byIndex + 4) {
+            return ui.invalidInput();
+        }
+
+        database.update(tasks);
+
+        String desc = Parser.getDeadlineDescription(input);
+        String deadlineStr = Parser.getDeadlineString(input);
+        LocalDateTime deadline = Parser.getDateTime(deadlineStr);
+
+        if (deadline == null) {
+            return ui.invalidDateTime();
+        }
+
+        Task task = new DeadlineTask(desc, deadline);
+        tasks.addTask(task);
+        return ui.addedTask(task.getName(), tasks.size());
+    }
+
+    private String handleEvent(String input) {
+        int fromIndex = input.indexOf(" /from");
+        int toIndex = input.indexOf(" /to", fromIndex + 1);
+        if (fromIndex == -1 || toIndex == -1 || fromIndex <= 5 ||
+                toIndex - (fromIndex + 6) <= 0 || input.length() <= toIndex + 4) {
+            return ui.invalidInput();
+        }
+
+        database.update(tasks);
+
+        String desc = Parser.getEventDescription(input);
+        String startStr = Parser.getEventString(input, true);
+        String endStr = Parser.getEventString(input, false);
+        LocalDateTime start = Parser.getDateTime(startStr);
+        LocalDateTime end = Parser.getDateTime(endStr);
+
+        if (start == null || end == null) {
+            return ui.invalidDateTime();
+        }
+
+        Task task = new EventTask(desc, start, end);
+        tasks.addTask(task);
+        return ui.addedTask(task.getName(), tasks.size());
+    }
+
+    private String handleDelete(String input) {
+        try {
+            int taskNumber = Integer.parseInt(input.substring(7).trim()) - 1;
+            if (taskNumber < 0 || taskNumber >= tasks.size()) {
+                return ui.taskNotFound();
+            }
+            database.update(tasks);
+            Task task = tasks.removeTask(taskNumber);
+            return ui.deletedTask(task, tasks.size());
+        } catch (NumberFormatException e) {
+            return ui.invalidInput();
+        }
+    }
+
+    private String handleClear() {
+        int total = tasks.size();
+        database.update(tasks);
+        while (!tasks.isEmpty()) {
+            tasks.removeTask(0);
+        }
+        return ui.clearedTasks(total);
+    }
+
+    private String handleFind(String input) {
+        String toSearch = Parser.parseFindCommand(input);
+        if (toSearch.isEmpty()) {
+            return ui.invalidInput();
+        }
+        return ui.listFilteredTasks(tasks, toSearch);
+    }
+
+    private String handleUndo() {
+        TaskList previousState = database.getPreviousState();
+        if (previousState == null) {
+            return ui.failedUndoCommand();
+        }
+        this.tasks = previousState;
+        return ui.undidCommand();
+    }
+
+    private String handleUpdate() {
+        database.update(tasks);
+        int removed = tasks.removeDoneTasks();
+        return ui.wipedDoneTasks(removed, tasks.size());
+    }
+
 }
