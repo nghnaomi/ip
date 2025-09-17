@@ -11,7 +11,7 @@ import alune.tasks.TaskList;
 
 public class UI {
     public String greet() {
-        return "hello there! i'm alune, your personal task manager~ what can i do for you today? (⸝⸝ᵕᴗᵕ⸝⸝)";
+        return "hello there! i'm alune, your personal task manager~ what can i do for you today? ( ⸝⸝ᵕᴗᵕ⸝⸝ )";
     }
 
     public String farewell() {
